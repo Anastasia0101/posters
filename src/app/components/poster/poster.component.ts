@@ -17,11 +17,9 @@ export class PosterComponent {
   showDetails(): void {
     const dialogRef = this.dialog.open(PosterDialogComponent, {
       width: '40%',
-      data: this.poster,
+      data: {poster: this.poster, edit: true},
     });
 
-    dialogRef.afterClosed().subscribe(() => {
-      console.log('The dialog was closed');
-    });
+    dialogRef.afterClosed().subscribe();
   }
 }

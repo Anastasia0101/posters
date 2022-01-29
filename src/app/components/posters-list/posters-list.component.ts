@@ -24,18 +24,17 @@ export class PostersListComponent implements OnInit {
   getPosters(): void {
     this.postersService.getPosters().subscribe((posters: Poster[]) => {
       this.posters = posters;
-      console.log(posters);
     });
   }
 
   createPoster(): void {
     const dialogRef = this.dialog.open(PosterDialogComponent, {
       width: '40%',
+      data: { poster: null }
     });
 
     dialogRef.afterClosed().subscribe((poster: Poster) => {
-      this.postersService.createPoster(poster);
-      // this.getPosters();
+      if(poster) this.postersService.createPoster(poster);
     });
   }
 }

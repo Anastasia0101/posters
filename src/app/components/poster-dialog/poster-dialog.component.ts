@@ -1,13 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { DialogData } from 'src/app/models/dialog-data.model';
 import { Poster } from 'src/app/models/poster.model';
 import { PostersService } from 'src/app/services/posters.service';
-
-interface PosterForm {
-  title: string;
-  description: string;
-}
 
 @Component({
   selector: 'app-poster-dialog',
@@ -23,26 +19,31 @@ export class PosterDialogComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<PosterDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public poster: Poster,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData,
     private formBuilder: FormBuilder,
     private posterService: PostersService
   ) { }
 
   ngOnInit(): void {
-    // if (this.poster) {
-    //   this.posterForm.patchValue({
-    //     title: this.poster.title,
-    //     description: this.poster.description
-    //   });
-    // }
+    if (this.data.poster) {
+      this.posterForm.patchValue({
+        title: this.data.poster.title,
+        description: this.data.poster.description
+      });
+    }
   }
 
   savePoster(): void {
-    console.log('save')
-    const posterFormValue = this.posterForm.value as PosterForm;
+    const posterFormValue = this.posterForm.value as Poster;
     const dateOfCreation = new Date();
     const poster = { id: null, ...posterFormValue, dateOfCreation } as Poster;
     this.dialogRef.close(poster);
+  }
+
+  deletePoster(): void {
+    if (!this.data.poster) this.closeDialog();
+    this.posterService.deletePoster((this.data.poster.id).toString());
+    this.dialogRef.close();
   }
 
   closeDialog(): void {
