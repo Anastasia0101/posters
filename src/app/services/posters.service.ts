@@ -7,13 +7,16 @@ import { Poster } from "../models/poster.model";
   providedIn: 'root',
 })
 export class PostersService {
-  url = 'api/posters/';
+  url = 'api/posters';
 
   constructor(private httpClient: HttpClient) {}
 
   getPosts(): Observable<Poster[]> {
     return this.httpClient.get<Poster[]>(this.url);
   }
+
+  createPoster(poster: Poster): Observable<Poster> {
+    console.log(poster);
+    return this.httpClient.post<Poster>(this.url, poster);
+  }
 }
-
-

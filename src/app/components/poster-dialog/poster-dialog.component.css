@@ -1,0 +1,26 @@
+.title {
+  text-align: center;
+  color: #0a0aa3;
+  font-size: 2em;
+}
+
+.form {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-items: flex-start;
+}
+
+.form__field {
+  margin-top: 5%;
+}
+
+.input {
+  height: 100%;
+}
+
+.form__button {
+  margin-top: 5%;
+  width: 40%;
+}
+

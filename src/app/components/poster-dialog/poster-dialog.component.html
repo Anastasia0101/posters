@@ -1,1 +1,14 @@
-<p>{{poster.title}}</p>
+<h1 class="title text">Poster</h1>
+ <form [formGroup]="posterForm" (ngSubmit)="savePoster()" class="form">
+  <mat-form-field class="form__field">
+    <mat-label>Title:</mat-label>
+    <input matInput type="text" formControlName="title">
+  </mat-form-field>
+
+  <mat-form-field class="form__field">
+    <mat-label>Description:</mat-label>
+    <textarea matInput type="text" formControlName="description" class="input"></textarea>
+  </mat-form-field>
+
+  <button mat-raised-button type="submit" [disabled]="!posterForm.valid" color="primary" class="form__button">Save</button>
+</form>

@@ -1,4 +1,5 @@
-<ul class="list">
+<button (click)="createPoster()">Create</button>
+<ul *ngIf="posters" class="list">
   <li *ngFor="let poster of posters" class="list__item">
     <app-poster [poster]="poster"></app-poster>
   </li>
