@@ -8,6 +8,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { DataService } from './services/data.service';
 
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { environment } from 'src/environments/environment';
+
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
@@ -33,6 +39,10 @@ import { PostersService } from './services/posters.service';
     HttpClientModule,
     HttpClientInMemoryWebApiModule.forRoot(DataService),
     BrowserAnimationsModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule, // firestore
+    AngularFireAuthModule, // auth
+    AngularFireStorageModule, // storage
     MatDialogModule,
     MatInputModule,
     MatButtonModule

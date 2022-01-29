@@ -22,8 +22,9 @@ export class PostersListComponent implements OnInit {
   }
 
   getPosters(): void {
-    this.postersService.getPosts().subscribe((posters: Poster[]) => {
+    this.postersService.getPosters().subscribe((posters: Poster[]) => {
       this.posters = posters;
+      console.log(posters);
     });
   }
 
@@ -33,8 +34,8 @@ export class PostersListComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((poster: Poster) => {
-      this.postersService.createPoster(poster).subscribe();
-      this.getPosters();
+      this.postersService.createPoster(poster);
+      // this.getPosters();
     });
   }
 }

@@ -1,5 +1,5 @@
-import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { AngularFirestore } from "@angular/fire/firestore";
 import { Observable } from "rxjs";
 import { Poster } from "../models/poster.model";
 
@@ -7,16 +7,14 @@ import { Poster } from "../models/poster.model";
   providedIn: 'root',
 })
 export class PostersService {
-  url = 'api/posters';
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private fireStore: AngularFirestore) {}
 
-  getPosts(): Observable<Poster[]> {
-    return this.httpClient.get<Poster[]>(this.url);
+  getPosters(): Observable<Poster[]> {
+    return this.fireStore.collection<Poster>('posters').valueChanges({ idField: 'collectionId' });
   }
 
-  createPoster(poster: Poster): Observable<Poster> {
-    console.log(poster);
-    return this.httpClient.post<Poster>(this.url, poster);
+  createPoster(poster: Poster): void {
+    this.fireStore.collection('posters').add(poster);
   }
 }
