@@ -1,0 +1,13 @@
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+}
+
+.list__item {
+  width: 30%;
+  height: 11em;
+  padding: 1em;
+  margin: 20px;
+  border: 2px solid #000000;
+}
