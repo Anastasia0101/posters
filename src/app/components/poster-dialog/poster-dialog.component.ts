@@ -16,6 +16,7 @@ export class PosterDialogComponent implements OnInit {
     title: ['', Validators.required],
     description: ['', Validators.required],
   });
+  poster?: Poster;
 
   constructor(
     public dialogRef: MatDialogRef<PosterDialogComponent>,
@@ -26,6 +27,7 @@ export class PosterDialogComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.data.poster) {
+      this.poster = this.data.poster;
       this.posterForm.patchValue({
         title: this.data.poster.title,
         description: this.data.poster.description
@@ -33,16 +35,22 @@ export class PosterDialogComponent implements OnInit {
     }
   }
 
-  savePoster(): void {
-    const posterFormValue = this.posterForm.value as Poster;
+  createPoster(): void {
+    const posterFormValue = this.posterForm.value;
     const dateOfCreation = new Date();
     const poster = { id: null, ...posterFormValue, dateOfCreation } as Poster;
     this.dialogRef.close(poster);
   }
 
+  editPoster(): void {
+    const posterFormValue = this.posterForm.value;
+    const poster = { ...posterFormValue, dateOfCreation: this.poster.dateOfCreation } as Poster;
+    this.posterService.editPoster(this.poster.id, poster);
+    this.dialogRef.close(poster);
+  }
+
   deletePoster(): void {
-    if (!this.data.poster) this.closeDialog();
-    this.posterService.deletePoster((this.data.poster.id).toString());
+    if (this.poster) this.posterService.deletePoster(this.poster.id);
     this.dialogRef.close();
   }
 

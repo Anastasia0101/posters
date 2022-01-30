@@ -17,9 +17,16 @@ export class PosterComponent {
   showDetails(): void {
     const dialogRef = this.dialog.open(PosterDialogComponent, {
       width: '40%',
+      data: {poster: this.poster, edit: false},
+    });
+    dialogRef.afterClosed().subscribe();
+  }
+
+  editPoster(): void {
+    const dialogRef = this.dialog.open(PosterDialogComponent, {
+      width: '40%',
       data: {poster: this.poster, edit: true},
     });
-
     dialogRef.afterClosed().subscribe();
   }
 }

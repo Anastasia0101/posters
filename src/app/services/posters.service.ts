@@ -18,6 +18,10 @@ export class PostersService {
     this.fireStore.collection('posters').add(poster);
   }
 
+  editPoster(id: string, poster: Poster): void {
+    this.fireStore.collection<Poster>('posters').doc(id).update(poster);
+  }
+
   deletePoster(id: string): void {
     this.fireStore.collection<Poster>('posters').doc(id).delete();
   }

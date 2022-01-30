@@ -14,6 +14,7 @@ import { environment } from 'src/environments/environment';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 import { PostersListComponent } from './components/posters-list/posters-list.component';
 import { PosterComponent } from './components/poster/poster.component';
@@ -40,7 +41,8 @@ import { PostersService } from './services/posters.service';
     AngularFireStorageModule,
     MatDialogModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    MatIconModule
   ],
   providers: [
     PostersService

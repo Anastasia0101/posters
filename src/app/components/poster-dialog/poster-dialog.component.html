@@ -10,6 +10,26 @@
     <textarea matInput type="text" formControlName="description" class="input"></textarea>
   </mat-form-field>
 
-  <button type="submit" mat-raised-button (click)="savePoster()" [disabled]="!posterForm.valid" color="primary" class="form__button">Save</button>
-  <button type="button" (click)="deletePoster()">delete</button>
+  <button
+    type="submit"
+    mat-raised-button
+    *ngIf="!poster; else editButton"
+    (click)="createPoster()"
+    [disabled]="!posterForm.valid"
+    color="primary"
+    class="form__button"
+  >Create</button>
+
+  <ng-template #editButton>
+    <button
+      type="submit"
+      mat-raised-button
+      #editButton
+      (click)="editPoster()"
+      [disabled]="!posterForm.valid"
+      color="primary"
+      class="form__button"
+    >Edit</button>
+  </ng-template>
+  <button type="button" [disabled]="!posterForm.valid" (click)="deletePoster()">delete</button>
 </form>
