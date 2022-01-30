@@ -14,18 +14,10 @@ export class PosterComponent {
 
   constructor(public dialog: MatDialog) { }
 
-  showDetails(): void {
+  openPosterDialog(isReadOnly?: boolean): void {
     const dialogRef = this.dialog.open(PosterDialogComponent, {
       width: '40%',
-      data: {poster: this.poster, edit: false},
-    });
-    dialogRef.afterClosed().subscribe();
-  }
-
-  editPoster(): void {
-    const dialogRef = this.dialog.open(PosterDialogComponent, {
-      width: '40%',
-      data: {poster: this.poster, edit: true},
+      data: { poster: this.poster, isReadOnly: isReadOnly },
     });
     dialogRef.afterClosed().subscribe();
   }

@@ -1,35 +1,47 @@
 <h1 class="title text">Poster</h1>
- <form [formGroup]="posterForm" class="form">
-  <mat-form-field class="form__field">
-    <mat-label>Title:</mat-label>
-    <input matInput type="text" formControlName="title">
-  </mat-form-field>
+  <form [formGroup]="posterForm" class="form">
+    <mat-form-field class="form__field">
+      <mat-label>Title:</mat-label>
+      <input matInput type="text" [readonly]="isReadOnly" formControlName="title">
+    </mat-form-field>
 
-  <mat-form-field class="form__field">
-    <mat-label>Description:</mat-label>
-    <textarea matInput type="text" formControlName="description" class="input"></textarea>
-  </mat-form-field>
+    <mat-form-field class="form__field">
+      <mat-label>Description:</mat-label>
+      <textarea matInput type="text" [readonly]="isReadOnly" formControlName="description"></textarea>
+    </mat-form-field>
 
-  <button
-    type="submit"
-    mat-raised-button
-    *ngIf="!poster; else editButton"
-    (click)="createPoster()"
-    [disabled]="!posterForm.valid"
-    color="primary"
-    class="form__button"
-  >Create</button>
+    <div *ngIf="!isReadOnly" class="form__action">
+      <button
+        type="submit"
+        mat-raised-button
+        *ngIf="!poster; else editButton"
+        (click)="createPoster()"
+        [disabled]="!posterForm.valid"
+        color="primary"
+        class="button"
+      >Create</button>
 
-  <ng-template #editButton>
-    <button
-      type="submit"
-      mat-raised-button
-      #editButton
-      (click)="editPoster()"
-      [disabled]="!posterForm.valid"
-      color="primary"
-      class="form__button"
-    >Edit</button>
-  </ng-template>
-  <button type="button" [disabled]="!posterForm.valid" (click)="deletePoster()">delete</button>
-</form>
+      <ng-template #editButton>
+        <button
+          type="submit"
+          mat-raised-button
+          #editButton
+          (click)="editPoster()"
+          [disabled]="!posterForm.valid"
+          color="primary"
+          class="button"
+        >Edit</button>
+      </ng-template>
+
+      <button
+        type="button"
+        mat-raised-button
+        [disabled]="!posterForm.valid"
+        (click)="deletePoster()"
+        color="warn"
+        class="button"
+      >delete</button>
+    </div>
+
+    <button type="button" mat-raised-button (click)="closeDialog()" class="form__button">Close</button>
+  </form>

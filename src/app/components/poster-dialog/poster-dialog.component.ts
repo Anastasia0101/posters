@@ -17,6 +17,7 @@ export class PosterDialogComponent implements OnInit {
     description: ['', Validators.required],
   });
   poster?: Poster;
+  isReadOnly = false;
 
   constructor(
     public dialogRef: MatDialogRef<PosterDialogComponent>,
@@ -26,6 +27,7 @@ export class PosterDialogComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.isReadOnly = this.data.isReadOnly ?? false;
     if (this.data.poster) {
       this.poster = this.data.poster;
       this.posterForm.patchValue({
