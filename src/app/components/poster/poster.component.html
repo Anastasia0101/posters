@@ -1,5 +1,9 @@
-<h3 class="title text">{{ poster.title }}</h3>
-<button (click)="showDetails(true)">Show details</button>
-<button mat-icon-button (click)="showDetails(false)">
-  <mat-icon title="Edit poster">edit</mat-icon>
-</button>
+<mat-card class="card" [style.font-size]="fontSize">
+  <mat-card-actions class="card__actions">
+    <button mat-icon-button (click)="showDetails(false)">
+      <mat-icon color="primary" title="Edit poster">edit</mat-icon>
+    </button>
+  </mat-card-actions>
+  <mat-card-title class="card__title">{{ poster.title }}</mat-card-title>
+  <button mat-raised-button color="primary" (click)="showDetails(true)" class="button">Show details</button>
+</mat-card>

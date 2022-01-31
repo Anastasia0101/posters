@@ -1,5 +1,5 @@
-<ul *ngIf="similarPosters">
-  <li *ngFor="let poster of similarPosters">
-    <app-poster [poster]="poster"></app-poster>
+<ul class="list">
+  <li *ngFor="let poster of similarPosters" class="list__item">
+    <app-poster [poster]="poster" [fontSize]="'11px'"></app-poster>
   </li>
 </ul>

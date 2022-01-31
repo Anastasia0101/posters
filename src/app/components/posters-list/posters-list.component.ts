@@ -4,7 +4,7 @@ import { PostersService } from 'src/app/services/posters.service';
 import { MatDialog } from '@angular/material/dialog';
 import { PosterDialogComponent } from '../poster-dialog/poster-dialog.component';
 import { combineLatest, Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { FormControl } from '@angular/forms';
 
 @Component({

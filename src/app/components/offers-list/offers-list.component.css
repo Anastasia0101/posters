@@ -1,0 +1,29 @@
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin: 3% 0;
+  padding: 0;
+}
+
+.list__item {
+  text-align: left;
+  width: 100%;
+  margin: 2%;
+}
+
+@media only screen and (min-width: 1000px) {
+  .list__item {
+    width: 45%;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .list {
+    flex-direction: column;
+  }
+
+  .list__item {
+    width: 90%;
+  }
+}

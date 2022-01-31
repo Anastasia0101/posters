@@ -2,5 +2,5 @@ export interface Poster {
   id: string;
   title: string;
   description: string;
-  dateOfCreation: Date;
+  dateOfCreation: string;
 }

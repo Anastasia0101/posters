@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
@@ -15,6 +16,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { TextFieldModule } from '@angular/cdk/text-field';
+import { MatCardModule } from '@angular/material/card';
 
 import { PostersListComponent } from './components/posters-list/posters-list.component';
 import { PosterComponent } from './components/poster/poster.component';
@@ -33,6 +36,7 @@ import { OffersListComponent } from './components/offers-list/offers-list.compon
     OffersListComponent,
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
@@ -44,7 +48,9 @@ import { OffersListComponent } from './components/offers-list/offers-list.compon
     MatDialogModule,
     MatInputModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    TextFieldModule,
+    MatCardModule
   ],
   providers: [
     PostersService

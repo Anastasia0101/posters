@@ -1,31 +1,51 @@
 .title {
   text-align: center;
   color: #0a0aa3;
-  font-size: 2em;
+  font-size: 3.5em;
+  margin: 3% 0;
 }
 
 .form {
   padding: 20px;
   display: flex;
   flex-direction: column;
-  justify-items: flex-start;
+  min-width: 60%;
+  font-size: 1.3em;
 }
 
 .form__field {
   margin-top: 5%;
+  font-family: 'Roboto';
 }
 
 .form__action {
   display: flex;
   justify-content: space-between;
+  margin-top: 2%;
 }
 
 .form__button {
-  margin: 10% auto 0;
+  margin: 7% auto 0;
   width: 30%;
+  height: 3%;
 }
 
 .button {
   margin-top: 5%;
   width: 30%;
+  padding: 1% 0;
+  font-size: 1em;
+  letter-spacing: 1px;
+  font-family: 'Merriweather', serif;
+}
+
+.textarea {
+  height: 100%;
+  width: 100%;
+}
+
+@media only screen and (max-width: 1200px) {
+  .mat-dialog-container {
+    width: 30%;
+  }
 }

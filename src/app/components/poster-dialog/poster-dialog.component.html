@@ -5,9 +5,22 @@
       <input matInput type="text" [readonly]="isReadOnly" formControlName="title">
     </mat-form-field>
 
+    <mat-form-field *ngIf="poster" class="form__field">
+      <mat-label>Date of creation:</mat-label>
+      <input matInput type="text" [readonly]="true" [value]="poster.dateOfCreation">
+    </mat-form-field>
+
     <mat-form-field class="form__field">
       <mat-label>Description:</mat-label>
-      <textarea matInput type="text" [readonly]="isReadOnly" formControlName="description"></textarea>
+      <textarea
+        matInput
+        type="text"
+        [readonly]="isReadOnly"
+        formControlName="description"
+        cdkTextareaAutosize
+        #autosize="cdkTextareaAutosize"
+        (change)="triggerResize()"
+      ></textarea>
     </mat-form-field>
 
     <div *ngIf="!isReadOnly" class="form__action">
@@ -18,7 +31,7 @@
         [disabled]="!posterForm.valid"
         color="primary"
         class="button"
-      >Create</button>
+      >create</button>
 
       <ng-template #editButton>
         <button
@@ -27,7 +40,7 @@
           [disabled]="!posterForm.valid"
           color="primary"
           class="button"
-        >Edit</button>
+        >edit</button>
       </ng-template>
 
       <button
@@ -40,7 +53,7 @@
       >delete</button>
     </div>
 
-    <app-offers-list [similarPosters]="data.similarPosters"></app-offers-list>
+    <app-offers-list *ngIf="data.similarPosters" [similarPosters]="data.similarPosters"></app-offers-list>
 
     <button type="button" mat-raised-button (click)="closeDialog()" class="form__button">Close</button>
   </form>

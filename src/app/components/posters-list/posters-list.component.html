@@ -1,7 +1,13 @@
-<input type="text" [formControl]="control"/>
-<button (click)="createPoster()">Create</button>
+<h1 class="title">Posters</h1>
+<form class="search-form">
+  <mat-form-field class="search-form__field">
+    <mat-label>Search</mat-label>
+    <input matInput type="text" matInput [formControl]="control" class="input"/>
+  </mat-form-field>
+  <button mat-raised-button (click)="createPoster()" class="button">Create</button>
+</form>
 <ul *ngIf="posters" class="list">
   <li *ngFor="let poster of posters" class="list__item">
-    <app-poster [poster]="poster"></app-poster>
+    <app-poster [poster]="poster" [fontSize]="'18px'"></app-poster>
   </li>
 </ul>

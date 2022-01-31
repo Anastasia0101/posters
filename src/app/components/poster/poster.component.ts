@@ -12,6 +12,7 @@ import { PosterDialogComponent } from '../poster-dialog/poster-dialog.component'
 export class PosterComponent {
 
   @Input() poster!: Poster;
+  @Input() fontSize: string;
   similarPosters: Poster[];
 
   constructor(
@@ -21,12 +22,13 @@ export class PosterComponent {
 
   openPosterDialog(isReadOnly?: boolean, posters?: Poster[]): void {
     const dialogRef = this.dialog.open(PosterDialogComponent, {
-      width: '40%',
       data: {
         poster: this.poster,
         isReadOnly: isReadOnly,
         similarPosters: posters
       },
+      maxHeight: '100vh',
+      width: '50%'
     });
     dialogRef.afterClosed().subscribe();
   }
