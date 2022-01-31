@@ -1,10 +1,10 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Poster } from 'src/app/models/poster.model';
 import { PostersService } from 'src/app/services/posters.service';
 import { MatDialog } from '@angular/material/dialog';
 import { PosterDialogComponent } from '../poster-dialog/poster-dialog.component';
-import { combineLatest, fromEvent, Observable } from 'rxjs';
-import { map, startWith, withLatestFrom } from 'rxjs/operators';
+import { combineLatest, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { FormControl } from '@angular/forms';
 
 @Component({
@@ -15,7 +15,6 @@ import { FormControl } from '@angular/forms';
 export class PostersListComponent implements OnInit {
   posters$: Observable<Poster[]>;
   posters: Poster[];
-  @ViewChild('seacher', {static: false}) inputRef: ElementRef<HTMLInputElement>;
   control = new FormControl('');
 
   constructor(
@@ -27,15 +26,11 @@ export class PostersListComponent implements OnInit {
     this.posters$ = this.postersService.getPosters();
     this.posters$.subscribe((posters: Poster[]) => {
       this.posters = posters;
-    })
+    });
   }
 
   ngAfterViewInit(): void {
-    const inputedText = fromEvent(this.inputRef.nativeElement, 'input').pipe(
-      withLatestFrom(this.control.valueChanges.pipe(startWith(''))),
-      map((data) => data[1]),
-    );
-    combineLatest([ this.posters$, inputedText ]).pipe(
+    combineLatest([ this.posters$, this.control.valueChanges ]).pipe(
       map(([posts, text]) => posts.filter(item => item.title.includes(text))),
     )
     .subscribe((posters: Poster[]) => this.posters = posters);
@@ -44,11 +39,8 @@ export class PostersListComponent implements OnInit {
   createPoster(): void {
     const dialogRef = this.dialog.open(PosterDialogComponent, {
       width: '40%',
-      data: { poster: null }
+      data: { }
     });
-
-    dialogRef.afterClosed().subscribe((poster: Poster) => {
-      if(poster) this.postersService.createPoster(poster);
-    });
+    dialogRef.afterClosed().subscribe();
   }
 }

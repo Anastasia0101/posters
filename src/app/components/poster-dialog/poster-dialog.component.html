@@ -1,5 +1,5 @@
 <h1 class="title text">Poster</h1>
-  <form [formGroup]="posterForm" class="form">
+  <form [formGroup]="posterForm" (ngSubmit)="onFormSubmit()" class="form">
     <mat-form-field class="form__field">
       <mat-label>Title:</mat-label>
       <input matInput type="text" [readonly]="isReadOnly" formControlName="title">
@@ -15,7 +15,6 @@
         type="submit"
         mat-raised-button
         *ngIf="!poster; else editButton"
-        (click)="createPoster()"
         [disabled]="!posterForm.valid"
         color="primary"
         class="button"
@@ -25,8 +24,6 @@
         <button
           type="submit"
           mat-raised-button
-          #editButton
-          (click)="editPoster()"
           [disabled]="!posterForm.valid"
           color="primary"
           class="button"
@@ -42,6 +39,8 @@
         class="button"
       >delete</button>
     </div>
+
+    <app-offers-list [similarPosters]="data.similarPosters"></app-offers-list>
 
     <button type="button" mat-raised-button (click)="closeDialog()" class="form__button">Close</button>
   </form>

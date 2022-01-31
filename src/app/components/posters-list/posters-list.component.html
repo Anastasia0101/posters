@@ -1,4 +1,4 @@
-<input type="text" [formControl]="control" #seacher/>
+<input type="text" [formControl]="control"/>
 <button (click)="createPoster()">Create</button>
 <ul *ngIf="posters" class="list">
   <li *ngFor="let poster of posters" class="list__item">

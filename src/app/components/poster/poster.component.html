@@ -1,5 +1,5 @@
 <h3 class="title text">{{ poster.title }}</h3>
-<button (click)="openPosterDialog(true)">Show details</button>
-<button mat-icon-button (click)="openPosterDialog()">
-  <mat-icon aria-hidden="false" aria-label="Edit poster">edit</mat-icon>
+<button (click)="showDetails(true)">Show details</button>
+<button mat-icon-button (click)="showDetails(false)">
+  <mat-icon title="Edit poster">edit</mat-icon>
 </button>

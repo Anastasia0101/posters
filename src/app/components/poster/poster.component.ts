@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Poster } from 'src/app/models/poster.model';
+import { PostersService } from 'src/app/services/posters.service';
 import { PosterDialogComponent } from '../poster-dialog/poster-dialog.component';
 
 @Component({
@@ -11,14 +12,28 @@ import { PosterDialogComponent } from '../poster-dialog/poster-dialog.component'
 export class PosterComponent {
 
   @Input() poster!: Poster;
+  similarPosters: Poster[];
 
-  constructor(public dialog: MatDialog) { }
+  constructor(
+    public dialog: MatDialog,
+    private postersService: PostersService
+  ) { }
 
-  openPosterDialog(isReadOnly?: boolean): void {
+  openPosterDialog(isReadOnly?: boolean, posters?: Poster[]): void {
     const dialogRef = this.dialog.open(PosterDialogComponent, {
       width: '40%',
-      data: { poster: this.poster, isReadOnly: isReadOnly },
+      data: {
+        poster: this.poster,
+        isReadOnly: isReadOnly,
+        similarPosters: posters
+      },
     });
     dialogRef.afterClosed().subscribe();
+  }
+
+  showDetails(isReadOnly: boolean): void {
+    this.postersService.searchSimilarPosters(this.poster).subscribe((posters: Poster[]) => {
+      this.openPosterDialog(isReadOnly, posters);
+    });
   }
 }
