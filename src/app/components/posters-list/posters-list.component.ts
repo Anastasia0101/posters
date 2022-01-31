@@ -4,7 +4,7 @@ import { PostersService } from 'src/app/services/posters.service';
 import { MatDialog } from '@angular/material/dialog';
 import { PosterDialogComponent } from '../poster-dialog/poster-dialog.component';
 import { combineLatest, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { FormControl } from '@angular/forms';
 
 @Component({
@@ -31,7 +31,7 @@ export class PostersListComponent implements OnInit {
 
   ngAfterViewInit(): void {
     combineLatest([ this.posters$, this.control.valueChanges ]).pipe(
-      map(([posts, text]) => posts.filter(item => item.title.includes(text))),
+      map(([posts, text]) => posts.filter(item => item.title.toLowerCase().includes(text.toLowerCase()))),
     )
     .subscribe((posters: Poster[]) => this.posters = posters);
   }
