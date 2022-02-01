@@ -1,4 +1,4 @@
-<h1 *ngIf="!poster" class="title text">Announcement</h1>
+<h1 *ngIf="!poster" class="title text">New</h1>
 <h1 *ngIf="poster" class="title text">{{poster.title}}</h1>
 <form [formGroup]="posterForm" (ngSubmit)="onFormSubmit()" class="form">
   <mat-form-field *ngIf="poster" class="form__field form__field--short">

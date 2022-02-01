@@ -34,21 +34,3 @@ ul {
 .mat-dialog-container {
   background-color: #fbfbfb;
 }
-
-@media only screen and (min-width: 1300px) {
-  .mat-dialog-container {
-    width: 40%;
-  }
-}
-
-@media only screen and (min-width: 900px) {
-  .cdk-overlay-pane {
-    width: 70%;
-  }
-}
-
-@media only screen and (max-width: 800px) {
-  .cdk-overlay-pane {
-    width: 80%;
-  }
-}

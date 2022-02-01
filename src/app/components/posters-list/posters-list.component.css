@@ -52,6 +52,9 @@
 }
 
 @media only screen and (max-width: 500px) {
+  .title {
+    font-size: 1.3em;
+  }
   .list__item {
     width: 80%;
   }

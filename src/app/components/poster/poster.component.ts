@@ -27,7 +27,7 @@ export class PosterComponent {
         isReadOnly: isReadOnly,
         similarPosters: posters
       },
-      maxHeight: '100vh',
+      maxHeight: '90vh',
       width: '50%'
     });
     dialogRef.afterClosed().subscribe();

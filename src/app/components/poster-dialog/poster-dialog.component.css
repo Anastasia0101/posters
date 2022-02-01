@@ -5,11 +5,11 @@
 }
 
 .form {
-  padding: 20px;
+  padding: 1em;
   display: flex;
   flex-direction: column;
   min-width: 60%;
-  font-size: 1.3em;
+  font-size: 20px;
 }
 
 .form__field {
@@ -18,24 +18,25 @@
 }
 
 .form__field--short {
-  width: 10em;
+  width: 9em;
 }
 
 .form__action {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
   margin-top: 2%;
 }
 
 .form__button {
   margin: 5% auto 0;
-  width: 30%;
+  width: 7em;
   height: 3%;
 }
 
 .button {
   margin-top: 5%;
-  width: 30%;
+  width: 7em;
   padding: 1% 0;
   font-size: 1em;
   letter-spacing: 1px;
@@ -43,7 +44,10 @@
 }
 
 @media only screen and (max-width: 1200px) {
-  .mat-dialog-container {
-    width: 30%;
+  .title {
+    font-size: 1.3em;
+  }
+  .form {
+    font-size: 10px;
   }
 }
