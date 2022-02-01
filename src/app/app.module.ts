@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 
@@ -22,10 +23,9 @@ import { MatCardModule } from '@angular/material/card';
 import { PostersListComponent } from './components/posters-list/posters-list.component';
 import { PosterComponent } from './components/poster/poster.component';
 import { PosterDialogComponent } from './components/poster-dialog/poster-dialog.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { OffersListComponent } from './components/offers-list/offers-list.component';
 
 import { PostersService } from './services/posters.service';
-import { OffersListComponent } from './components/offers-list/offers-list.component';
 
 @NgModule({
   declarations: [

@@ -1,59 +1,60 @@
-<h1 class="title text">Poster</h1>
-  <form [formGroup]="posterForm" (ngSubmit)="onFormSubmit()" class="form">
-    <mat-form-field class="form__field">
-      <mat-label>Title:</mat-label>
-      <input matInput type="text" [readonly]="isReadOnly" formControlName="title">
-    </mat-form-field>
+<h1 *ngIf="!poster" class="title text">Announcement</h1>
+<h1 *ngIf="poster" class="title text">{{poster.title}}</h1>
+<form [formGroup]="posterForm" (ngSubmit)="onFormSubmit()" class="form">
+  <mat-form-field *ngIf="poster" class="form__field form__field--short">
+    <mat-label color="primary">Date of creation:</mat-label>
+    <input matInput type="text" [readonly]="true" [value]="poster.dateOfCreation">
+  </mat-form-field>
 
-    <mat-form-field *ngIf="poster" class="form__field">
-      <mat-label>Date of creation:</mat-label>
-      <input matInput type="text" [readonly]="true" [value]="poster.dateOfCreation">
-    </mat-form-field>
+  <mat-form-field *ngIf="!isReadOnly" class="form__field">
+    <mat-label>Title:</mat-label>
+    <input matInput type="text" [readonly]="isReadOnly" formControlName="title">
+  </mat-form-field>
 
-    <mat-form-field class="form__field">
-      <mat-label>Description:</mat-label>
-      <textarea
-        matInput
-        type="text"
-        [readonly]="isReadOnly"
-        formControlName="description"
-        cdkTextareaAutosize
-        #autosize="cdkTextareaAutosize"
-        (change)="triggerResize()"
-      ></textarea>
-    </mat-form-field>
+  <mat-form-field class="form__field">
+    <mat-label>Description:</mat-label>
+    <textarea
+      matInput
+      type="text"
+      [readonly]="isReadOnly"
+      formControlName="description"
+      cdkTextareaAutosize
+      #autosize="cdkTextareaAutosize"
+      (change)="triggerResize()"
+    ></textarea>
+  </mat-form-field>
 
-    <div *ngIf="!isReadOnly" class="form__action">
+  <div *ngIf="!isReadOnly" class="form__action">
+    <button
+      type="submit"
+      mat-raised-button
+      *ngIf="!poster; else editButton"
+      [disabled]="!posterForm.valid"
+      color="primary"
+      class="button"
+    >create</button>
+
+    <ng-template #editButton>
       <button
         type="submit"
         mat-raised-button
-        *ngIf="!poster; else editButton"
         [disabled]="!posterForm.valid"
         color="primary"
         class="button"
-      >create</button>
+      >edit</button>
+    </ng-template>
 
-      <ng-template #editButton>
-        <button
-          type="submit"
-          mat-raised-button
-          [disabled]="!posterForm.valid"
-          color="primary"
-          class="button"
-        >edit</button>
-      </ng-template>
+    <button
+      type="button"
+      mat-raised-button
+      [disabled]="!posterForm.valid"
+      (click)="deletePoster()"
+      color="warn"
+      class="button"
+    >delete</button>
+  </div>
 
-      <button
-        type="button"
-        mat-raised-button
-        [disabled]="!posterForm.valid"
-        (click)="deletePoster()"
-        color="warn"
-        class="button"
-      >delete</button>
-    </div>
+  <app-offers-list *ngIf="data.similarPosters" [similarPosters]="data.similarPosters"></app-offers-list>
 
-    <app-offers-list *ngIf="data.similarPosters" [similarPosters]="data.similarPosters"></app-offers-list>
-
-    <button type="button" mat-raised-button (click)="closeDialog()" class="form__button">Close</button>
-  </form>
+  <button type="button" mat-raised-button (click)="closeDialog()" class="form__button">Close</button>
+</form>

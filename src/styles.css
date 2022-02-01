@@ -3,7 +3,7 @@
 html, body { height: 100%; }
 body {
   margin: 0;
-  background-color: rgb(206, 233, 255);
+  background-color: #CEE9FF;
 }
 
 ul {
@@ -14,6 +14,25 @@ ul {
   font-size: 1.3em;
   font-family: 'Poppins', sans-serif;
   font-weight: 300;
+}
+
+.button:not([disabled]):hover {
+  transition: 0.3s;
+  transform: scale(1.1);
+}
+
+.title {
+  font-size: 3em;
+  font-family: 'Merriweather', serif;
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.mat-dialog-container {
+  background-color: #fbfbfb;
 }
 
 @media only screen and (min-width: 1300px) {

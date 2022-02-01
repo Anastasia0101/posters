@@ -13,24 +13,22 @@
 
 .button {
   width: 50%;
+  font-family: 'Merriweather', serif;
   margin: 1em auto;
   font-size: 1.2em;
   padding: 0.3em 0;
+  letter-spacing: 1px;
 }
 
 .title {
   text-align: center;
-  letter-spacing: 1px;
-  font-family: 'Merriweather', serif;
-  font-size: 3em;
+  letter-spacing: 2px;
   color: #000000;
-  margin: 1em;
+  margin: 1.5em;
 }
 
 .list {
-  display: flex;
   justify-content: center;
-  flex-wrap: wrap;
   width: 80%;
   margin: 0 auto;
 }
